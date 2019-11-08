@@ -3,6 +3,7 @@ package com.example.Deintpruebarecycler.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +19,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     // Constructor con cosas
     private Contacto misContactos[];
 
+    private int[] imagenes;
+
     private OnItemClickListener listener;
     public interface OnItemClickListener{
         public void OnItemClick(Contacto contacto);
         }
 
-    public MyAdapter(Contacto[] misContactos, OnItemClickListener listener) {
+    public MyAdapter(Contacto[] misContactos, int[] imagenes, OnItemClickListener listener) {
         this.misContactos = misContactos;
+        this.imagenes = imagenes;
         this.listener = listener;
+
 
     }
 
@@ -43,8 +48,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         // Vamos a asignar a cada holder su posicion
         final Contacto contacto = misContactos[position];
+        final int imagenId = imagenes[position];
         holder.tvUno.setText(misContactos[position].getNombre());
-        holder.tvDos.setText(misContactos[position].getEmail());
+        holder.tvDos.setText(String.valueOf((misContactos[position].getSueldo())));
+        holder.ivImagen.setImageResource(imagenId);
         holder.cl.setOnClickListener(new View.OnClickListener(){
             // Le clicamos a cada recycler y dice su posicion
             @Override
@@ -64,6 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     // La clase tendra los textview que hemos creado
     public class MyViewHolder extends RecyclerView.ViewHolder { // ViewHolder para vistas individuales.
         TextView tvUno, tvDos;
+        ImageView ivImagen;
         //
         ConstraintLayout cl;
         public MyViewHolder(@NonNull View itemView) {
@@ -71,6 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             // Hasta no crear el onCreateViewHolder no va a encontrar los id
             tvUno = itemView.findViewById(R.id.tvUno);
             tvDos = itemView.findViewById(R.id.tvDos);
+            ivImagen = itemView.findViewById(R.id.ivImagen);
             cl = itemView.findViewById(R.id.cl);
         }
     }

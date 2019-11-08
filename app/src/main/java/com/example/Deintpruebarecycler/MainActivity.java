@@ -1,5 +1,6 @@
 package com.example.Deintpruebarecycler;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.Deintpruebarecycler.adapter.MyAdapter;
@@ -19,12 +20,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final static String A = "A";
+
     // Objetos
     private RecyclerView myRecyler;
     private RecyclerView.LayoutManager layoutManager;
-    private Contacto misContactos[] = new Contacto[3];
+    private Contacto misContactos[] = new Contacto[4];
+    private int[] imagenes = {R.drawable.arquitecto, R.drawable.economia728x364, R.drawable.informatico, R.drawable.cat};
 
-    //
+    //----------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +53,18 @@ public class MainActivity extends AppCompatActivity {
     public void init(){
         myRecyler = findViewById(R.id.myRecycler);
         // Asignarle un layout manager
-        // layoutManager = new LinearLayoutManager(this); Por defecto vertical
-        layoutManager = new GridLayoutManager(this,3);
+        layoutManager = new LinearLayoutManager(this); // Por defecto vertical
+        // layoutManager = new GridLayoutManager(this,3);
         myRecyler.setLayoutManager(layoutManager);
         // Asignarle un adaptador
         crearArray();
-        MyAdapter myAdapter = new MyAdapter(misContactos, new MyAdapter.OnItemClickListener() {
+        MyAdapter myAdapter = new MyAdapter(misContactos, imagenes, new MyAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(Contacto contacto) {
-                Toast.makeText(MainActivity.this, "Nombre " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this, "Nombre " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent();
+
+
             }
         });
         myRecyler.setAdapter(myAdapter);
@@ -64,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void crearArray() {
-        misContactos[0] = new Contacto("Juan", "juan@as.net");
-        misContactos[1] = new Contacto("Maria", "mariflow@as.net");
-        misContactos[2] = new Contacto("Antonia", "antonia@as.net");
+        misContactos[0] = new Contacto("Juan", "1800€");
+        misContactos[1] = new Contacto("Maria", "1500€");
+        misContactos[2] = new Contacto("Antonia", "1200€");
+        misContactos[3] = new Contacto("Julia", "1000€");
     }
 
 
