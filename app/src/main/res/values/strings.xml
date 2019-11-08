@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PruebaRecycler</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="tv1">tv1</string>
+    <string name="tv2">tv2</string>
+    
+    <string name="postres">Postres a elegir</string>
+</resources>
