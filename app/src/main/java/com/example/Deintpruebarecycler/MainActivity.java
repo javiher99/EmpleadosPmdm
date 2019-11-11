@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.Deintpruebarecycler.adapter.MyAdapter;
+import com.example.Deintpruebarecycler.model.Activity2Empleados;
 import com.example.Deintpruebarecycler.model.Contacto;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    //-----------------------
+    //----------------------
     public void init(){
         myRecyler = findViewById(R.id.myRecycler);
         // Asignarle un layout manager
@@ -62,13 +63,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnItemClick(Contacto contacto) {
                 // Toast.makeText(MainActivity.this, "Nombre " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent();
-
+                lanzar();
 
             }
         });
         myRecyler.setAdapter(myAdapter);
 
+    }
+
+    private void lanzar() {
+        Intent i = new Intent(this, Activity2Empleados.class);
+        // i.putExtra(A,);
+        startActivity(i);
     }
 
     private void crearArray() {
